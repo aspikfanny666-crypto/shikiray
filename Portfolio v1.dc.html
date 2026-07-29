@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/modernist-05fc1d87-ab87-4d1e-80b6-b82a84cda013/styles.css">
+<script src="_ds/modernist-05fc1d87-ab87-4d1e-80b6-b82a84cda013/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root { --accent: #ec3013; --ink: #080807; --paper: #ecebe8; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #080807; color: #d9d5cf; }
+a { color: #d9d5cf; text-decoration: none; }
+a:hover { color: var(--accent); }
+input { font: inherit; }
+::selection { background: var(--accent); color: #fff; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@keyframes scandrift { from { transform: translateY(0); } to { transform: translateY(6px); } }
+@keyframes flick { 0%,97%,100% { opacity: .16; } 98% { opacity: .08; } 99% { opacity: .22; } }
+@keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+@keyframes dashspin { to { transform: rotate(360deg); } }
+@keyframes glitchx { 0%,92%,100% { transform: translate(0,0); } 93% { transform: translate(-2px,1px); } 95% { transform: translate(2px,-1px); } 97% { transform: translate(-1px,0); } }
+</style>
+</helmet>
+
+<div style="position: relative; min-height: 100vh; overflow-x: hidden; background: #080807; font-family: 'JetBrains Mono', ui-monospace, monospace;">
+
+  <canvas id="matrix-canvas" style="position: fixed; inset: 0; width: 100%; height: 100%; z-index: 2; opacity: 0; transition: opacity .45s ease; pointer-events: none;"></canvas>
+
+  <div style="position: fixed; inset: 0; z-index: 3; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 56px 56px;"></div>
+  <div style="position: fixed; inset: -10px; z-index: 4; pointer-events: none; background: repeating-linear-gradient(180deg, rgba(0,0,0,.42) 0px, rgba(0,0,0,.42) 1px, transparent 1px, transparent 3px); animation: scandrift 1.2s linear infinite alternate, flick 6s steps(1) infinite;"></div>
+  <div style="position: fixed; inset: 0; z-index: 4; pointer-events: none; opacity: .11; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22/></filter><rect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22/></svg>'); background-size: 160px 160px;"></div>
+  <div style="position: fixed; inset: 0; z-index: 4; pointer-events: none; background: radial-gradient(120% 90% at 50% 45%, transparent 40%, rgba(0,0,0,.75) 100%);"></div>
+
+  <div style="position: relative; z-index: 10;">
+
+    <header style="position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 14px 28px; border-bottom: 2px solid #221f1d; background: rgba(8,8,7,.86); backdrop-filter: blur(6px);">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 14px; height: 20px; background: var(--accent); clip-path: polygon(0 0, 100% 12%, 100% 100%, 0 88%);"></div>
+        <span style="font-family: Archivo, sans-serif; font-weight: 900; letter-spacing: .16em; font-size: 13px; color: #f2efe9; text-transform: uppercase;">shikiray.io</span>
+      </div>
+      <nav style="display: flex; align-items: center; gap: 22px; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #85807a;">
+        <a href="#terminal">terminal</a>
+        <a href="#projects">projects</a>
+        <a href="#stack">stack</a>
+        <a href="#contact" style="color: var(--accent);">contact</a>
+      </nav>
+    </header>
+
+    <section style="position: relative; padding: 0 28px 96px;">
+      <div style="position: absolute; top: -40px; right: -140px; width: 620px; height: 620px; background: var(--accent); opacity: .12; clip-path: polygon(38% 0, 100% 14%, 100% 86%, 8% 100%); pointer-events: none;"></div>
+
+      <div style="position: relative; max-width: 1240px; margin: 0 auto; padding-top: 72px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 56px; align-items: end;">
+
+        <div data-reveal="1" style="opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); min-width: 0;">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 26px;">
+            <div style="height: 2px; width: 46px; background: var(--accent);"></div>
+            <span style="font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: var(--accent);">no. 001 &nbsp;/&nbsp; take your heart of the stack</span>
+          </div>
+
+          <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: -.02em; line-height: .84; font-size: clamp(58px, 11vw, 168px); color: #f4f1eb; animation: glitchx 7s steps(1) infinite;">
+            <span style="display: block;">shiki</span>
+            <span style="display: inline-block; position: relative; padding: 0 .12em; color: #0a0908; background: var(--accent); transform: skewX(-7deg);">ray</span>
+          </h1>
+
+          <p style="margin: 28px 0 0; max-width: 56ch; font-size: 15px; line-height: 1.75; color: #a49e97; text-wrap: pretty;">
+            I build fullstack products end to end — from Postgres schemas to interfaces that feel like they were drawn by hand. Based in Singapore, shipping quietly, taking the whole system seriously.
+          </p>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px;">
+            <a href="https://t.me/shikiray" target="_blank" rel="noreferrer" style="display: flex; align-items: center; gap: 10px; padding: 11px 18px; border: 2px solid #2b2724; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #ded9d2; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));" style-hover="border-color: var(--accent); color: var(--accent);">
+              <span style="color: var(--accent);">tg</span> shikiray
+            </a>
+            <a href="https://github.com/spelsinx" target="_blank" rel="noreferrer" style="display: flex; align-items: center; gap: 10px; padding: 11px 18px; border: 2px solid #2b2724; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #ded9d2; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));" style-hover="border-color: var(--accent); color: var(--accent);">
+              <span style="color: var(--accent);">gh</span> spelsinx
+            </a>
+            <a href="https://youtube.com/@shikirayyy" target="_blank" rel="noreferrer" style="display: flex; align-items: center; gap: 10px; padding: 11px 18px; border: 2px solid #2b2724; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #ded9d2; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));" style-hover="border-color: var(--accent); color: var(--accent);">
+              <span style="color: var(--accent);">yt</span> shikirayyy
+            </a>
+          </div>
+        </div>
+
+        <div data-reveal="1" style="opacity: 0; transform: translateY(22px); transition: opacity .7s ease .12s, transform .7s cubic-bezier(.2,.8,.2,1) .12s; display: flex; flex-direction: column; align-items: flex-start; gap: 22px; min-width: 0;">
+          <div style="position: relative; width: 236px; height: 236px; flex: none;">
+            <div style="position: absolute; inset: -14px; border: 2px dashed rgba(236,48,19,.45); border-radius: 50%; animation: dashspin 34s linear infinite;"></div>
+            <div style="position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--accent); overflow: hidden; background: #121110;">
+              <img src="uploads/avatar-1785331657499.jpg" alt="shikiray" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.18) brightness(.92);">
+            </div>
+            <div style="position: absolute; bottom: -10px; left: -18px; padding: 6px 12px; background: var(--accent); color: #0a0908; font-family: Archivo, sans-serif; font-weight: 900; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; transform: skewX(-8deg);">online</div>
+          </div>
+
+          <div style="width: 100%; border: 2px solid #221f1d; padding: 18px 20px; display: grid; gap: 10px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #7e7973;">
+            <div style="display: flex; justify-content: space-between; gap: 16px;"><span>role</span><span style="color: #ded9d2;">fullstack dev</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 16px;"><span>base</span><span style="color: #ded9d2;">singapore</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 16px;"><span>status</span><span style="color: var(--accent);">open to work</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="height: 2px; background: #221f1d;"></div>
+
+    <section id="terminal" style="padding: 84px 28px;">
+      <div style="max-width: 1240px; margin: 0 auto;">
+        <div data-reveal="1" style="opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 26px;">
+          <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(30px, 4.4vw, 58px); text-transform: uppercase; letter-spacing: -.01em; color: #f4f1eb;">the console</h2>
+          <span style="font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: #6f6a64;">type <span style="color: var(--accent);">help</span> to see every command</span>
+        </div>
+
+        <div data-reveal="1" onClick="{{ focusInput }}" style="opacity: 0; transform: translateY(22px); transition: opacity .7s ease .08s, transform .7s cubic-bezier(.2,.8,.2,1) .08s; border: 2px solid #2b2724; background: rgba(12,11,10,.82); cursor: text;">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 2px solid #2b2724; background: rgba(20,18,17,.9);">
+            <div style="display: flex; gap: 6px;">
+              <div style="width: 12px; height: 12px; background: var(--accent);"></div>
+              <div style="width: 12px; height: 12px; background: #45403c;"></div>
+              <div style="width: 12px; height: 12px; background: #45403c;"></div>
+            </div>
+            <span style="font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #85807a;">shikiray@node — /home/guest</span>
+          </div>
+
+          <div style="padding: 22px 20px 8px; max-height: 480px; overflow-y: auto; font-size: 13px; line-height: 1.65;">
+            <sc-for list="{{ lines }}" as="line" hint-placeholder-count="4">
+              <div style="white-space: pre-wrap; word-break: break-word; color: {{ line.color }};">{{ line.text }}</div>
+            </sc-for>
+            <div ref="{{ endRef }}"></div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px; padding: 12px 20px 20px; font-size: 13px;">
+            <span style="color: var(--accent); flex: none;">guest@shikiray:~$</span>
+            <input ref="{{ inputRef }}" onKeyDown="{{ onKeyDown }}" placeholder="help" autocomplete="off" spellcheck="false" style="flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: #ecebe8; font-size: 13px; letter-spacing: .02em;">
+            <span style="width: 9px; height: 16px; background: var(--accent); animation: blink 1.05s steps(1) infinite; flex: none;"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="height: 2px; background: #221f1d;"></div>
+
+    <section id="projects" style="padding: 84px 28px;">
+      <div style="max-width: 1240px; margin: 0 auto;">
+        <div data-reveal="1" style="opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 34px;">
+          <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(30px, 4.4vw, 58px); text-transform: uppercase; letter-spacing: -.01em; color: #f4f1eb;">selected work</h2>
+          <span style="font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: #6f6a64;">ls -la ~/projects</span>
+        </div>
+
+        <div style="display: grid; gap: 0; border-top: 2px solid #221f1d;">
+          <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+            <a href="{{ p.href }}" target="_blank" rel="noreferrer" data-reveal="1" style="opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1), background .2s ease, border-color .2s ease; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; padding: 26px 18px; border-bottom: 2px solid #221f1d; border-left: 2px solid transparent;" style-hover="background: rgba(236,48,19,.06); border-left-color: var(--accent);">
+              <span style="flex: none; width: 34px; font-size: 12px; letter-spacing: .2em; color: var(--accent);">{{ p.no }}</span>
+              <span style="flex: 0 0 190px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 21px; text-transform: uppercase; letter-spacing: .01em; color: #f2efe9;">{{ p.name }}</span>
+              <span style="flex: 1 1 300px; min-width: 0; font-size: 13px; line-height: 1.6; color: #928d87;">{{ p.desc }}</span>
+              <span style="flex: none; margin-left: auto; display: flex; align-items: center; gap: 18px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #6f6a64; white-space: nowrap;">
+                <span>{{ p.stack }}</span>
+                <span style="color: var(--accent); font-size: 15px;">→</span>
+              </span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <div style="height: 2px; background: #221f1d;"></div>
+
+    <section id="stack" style="padding: 84px 28px;">
+      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 56px; align-items: start;">
+        <div data-reveal="1" style="opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1);">
+          <h2 style="margin: 0 0 18px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(30px, 4.4vw, 58px); text-transform: uppercase; letter-spacing: -.01em; color: #f4f1eb;">the kit</h2>
+          <p style="margin: 0; font-size: 14px; line-height: 1.75; color: #928d87; max-width: 34ch;">Tools I reach for without thinking. I pick the boring one when it ships faster, and the sharp one when it matters.</p>
+        </div>
+        <div data-reveal="1" style="opacity: 0; transform: translateY(22px); transition: opacity .7s ease .08s, transform .7s cubic-bezier(.2,.8,.2,1) .08s; display: grid; gap: 30px;">
+          <sc-for list="{{ stackGroups }}" as="g" hint-placeholder-count="5">
+            <div style="display: grid; gap: 14px;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); white-space: nowrap;">{{ g.label }}</span>
+                <div style="flex: 1; height: 2px; background: #221f1d;"></div>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <sc-for list="{{ g.items }}" as="t" hint-placeholder-count="4">
+                  <span style="padding: 11px 18px; border: 2px solid #2b2724; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #ded9d2; transition: border-color .2s ease, color .2s ease, transform .2s ease; clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));" style-hover="border-color: var(--accent); color: var(--accent); transform: translateY(-2px);">{{ t }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="position: relative; padding: 96px 28px 40px; border-top: 2px solid #221f1d;">
+      <div style="max-width: 1240px; margin: 0 auto;">
+        <div data-reveal="1" style="opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+              <div style="height: 2px; width: 46px; background: var(--accent);"></div>
+              <span style="font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: var(--accent);">next target</span>
+            </div>
+            <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 6vw, 88px); line-height: .9; text-transform: uppercase; color: #f4f1eb;">let's build<br>something loud</h2>
+          </div>
+          <a href="https://t.me/shikiray" target="_blank" rel="noreferrer" style="padding: 18px 30px; background: var(--accent); color: #0a0908; font-family: Archivo, sans-serif; font-weight: 900; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; transform: skewX(-8deg); transition: filter .2s ease;" style-hover="filter: brightness(1.12);">telegram → shikiray</a>
+        </div>
+
+        <div style="margin-top: 64px; padding-top: 20px; border-top: 2px solid #221f1d; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #5f5b56;">
+          <span>shikiray.io — fullstack developer, singapore</span>
+          <span>handcrafted, not templated</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ec3013&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#ec3013&quot;,&quot;#22d3ee&quot;,&quot;#f59e0b&quot;,&quot;#84cc16&quot;]},&quot;autofocusTerminal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+const C = { dim: '#7e7973', text: '#d9d5cf', bright: '#f2efe9', accent: 'var(--accent)' };
+
+const THEMES = { red: '#ec3013', cyan: '#22d3ee', amber: '#f59e0b', lime: '#84cc16', violet: '#a78bfa', white: '#ecebe8' };
+
+const HELP = [
+  ['help', 'list available commands'],
+  ['whoami', 'a little about me'],
+  ['neofetch', 'system info, terminal-style'],
+  ['stack', 'what i work with'],
+  ['projects', 'stuff i built'],
+  ['github', 'my latest github activity'],
+  ['social', 'where to find me'],
+  ['theme', 'change accent color — theme <name>'],
+  ['matrix', 'toggle the matrix rain'],
+  ['sl', 'you typed it wrong, didn\u2019t you'],
+  ['echo', 'echo <text>'],
+  ['date', 'current date & time'],
+  ['neko', 'summon the cat'],
+  ['clear', 'clear the screen']
+];
+
+class Component extends DCLogic {
+  state = {
+    lines: [
+      { text: 'shikiray.io // console v2.6 — node ready', color: C.dim },
+      { text: 'session opened for guest @ singapore', color: C.dim },
+      { text: '', color: C.dim },
+      { text: 'type `help` for the command list.', color: 'var(--accent)' },
+      { text: '', color: C.dim }
+    ]
+  };
+
+  projects = [
+    { no: '01', name: 'orbit', desc: 'Realtime ops dashboard — websocket fanout, 40k concurrent panels, zero flicker.', stack: 'react · node · postgres', href: 'https://github.com/spelsinx' },
+    { no: '02', name: 'kanso api', desc: 'Opinionated REST scaffold with typed schemas, migrations and auth out of the box.', stack: 'python · postgres', href: 'https://github.com/spelsinx' },
+    { no: '03', name: 'nightshift', desc: 'Self-hosted media queue with a CRT-styled remote you can run from a phone.', stack: 'node · sqlite3 · css', href: 'https://github.com/spelsinx' },
+    { no: '04', name: 'inkwell', desc: 'Markdown notes engine — offline-first sync, full text search, 12kb client.', stack: 'react · mongodb', href: 'https://github.com/spelsinx' }
+  ];
+
+  stackGroups = [
+    { label: 'languages', items: ['JavaScript', 'Python', 'HTML', 'CSS'] },
+    { label: 'frontend', items: ['React', 'Tailwind CSS'] },
+    { label: 'backend', items: ['Node.js', 'Express', 'aiogram', 'Telethon', 'REST API'] },
+    { label: 'database', items: ['SQLite', 'MongoDB', 'PostgreSQL'] },
+    { label: 'tools', items: ['Git', 'GitHub', 'Vercel', 'Netlify', 'VS Code', 'Claude Code', 'ChatGPT'] }
+  ];
+
+  componentDidMount() {
+    if (this.props.accentColor) document.documentElement.style.setProperty('--accent', this.props.accentColor);
+    this.setupReveals();
+    this.setupMatrix();
+    if (this.props.autofocusTerminal && this.input) this.input.focus();
+  }
+
+  componentWillUnmount() { this.stopMatrix(); if (this.io) this.io.disconnect(); }
+
+  setupReveals() {
+    const els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    const show = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    if (!('IntersectionObserver' in window)) { els.forEach(show); return; }
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { show(e.target); this.io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el) => this.io.observe(el));
+  }
+
+  setupMatrix() {
+    this.canvas = document.getElementById('matrix-canvas');
+    if (!this.canvas) return;
+    const resize = () => {
+      const d = window.devicePixelRatio || 1;
+      this.canvas.width = window.innerWidth * d;
+      this.canvas.height = window.innerHeight * d;
+      this.cols = Math.floor(window.innerWidth / 16);
+      this.drops = new Array(this.cols).fill(0).map(() => Math.random() * -60);
+      this.dpr = d;
+    };
+    resize();
+    this._resize = resize;
+    window.addEventListener('resize', resize);
+  }
+
+  startMatrix() {
+    if (!this.canvas || this.raf) return;
+    this.canvas.style.opacity = '0.5';
+    const ctx = this.canvas.getContext('2d');
+    const glyphs = 'アイウエオカキクケコサシスセソタチツテトナニヌネノ0123456789<>/\\|=+*#';
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ec3013';
+    let last = 0;
+    const loop = (t) => {
+      this.raf = requestAnimationFrame(loop);
+      if (t - last < 55) return;
+      last = t;
+      const d = this.dpr;
+      ctx.fillStyle = 'rgba(8,8,7,0.22)';
+      ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      ctx.font = (14 * d) + 'px JetBrains Mono, monospace';
+      for (let i = 0; i < this.cols; i++) {
+        const ch = glyphs[Math.floor(Math.random() * glyphs.length)];
+        ctx.fillStyle = Math.random() > 0.86 ? accent : 'rgba(200,196,190,0.5)';
+        ctx.fillText(ch, i * 16 * d, this.drops[i] * 16 * d);
+        this.drops[i] = this.drops[i] * 16 > window.innerHeight && Math.random() > 0.975 ? 0 : this.drops[i] + 1;
+      }
+    };
+    this.raf = requestAnimationFrame(loop);
+  }
+
+  stopMatrix() {
+    if (this.raf) { cancelAnimationFrame(this.raf); this.raf = null; }
+    if (this.canvas) this.canvas.style.opacity = '0';
+    if (this._resize) window.removeEventListener('resize', this._resize);
+  }
+
+  print(rows) {
+    this.setState((s) => ({ lines: s.lines.concat(rows) }), () => {
+      if (this.end && this.end.scrollIntoView) {
+        const box = this.end.parentNode;
+        if (box) box.scrollTop = box.scrollHeight;
+      }
+    });
+  }
+
+  pad(s, n) { let o = String(s); while (o.length < n) o += ' '; return o; }
+
+  async run(raw) {
+    const input = raw.trim();
+    const [cmd, ...rest] = input.split(/\s+/);
+    const arg = rest.join(' ');
+    const echo = [{ text: 'guest@shikiray:~$ ' + input, color: C.bright }];
+    const out = (rows) => this.print(echo.concat(rows, [{ text: '', color: C.dim }]));
+
+    if (!input) { this.print([{ text: 'guest@shikiray:~$', color: C.bright }]); return; }
+
+    switch (cmd.toLowerCase()) {
+      case 'help':
+        out(HELP.map((h) => ({ text: '  ' + this.pad(h[0], 11) + h[1], color: C.text })));
+        break;
+      case 'whoami':
+        out([
+          { text: 'shikiray — fullstack developer, Singapore.', color: C.bright },
+          { text: '', color: C.dim },
+          { text: 'I like systems that hold up under load and interfaces that', color: C.text },
+          { text: 'have an opinion. Backend first by instinct, frontend by', color: C.text },
+          { text: 'obsession. Currently open to work.', color: C.text }
+        ]);
+        break;
+      case 'neofetch':
+        out([
+          { text: '   ▄▄▄▄▄▄▄▄    guest@shikiray', color: 'var(--accent)' },
+          { text: '  █▀▀▀▀▀▀▀▀█   ---------------', color: 'var(--accent)' },
+          { text: '  █  ▄▄  ▄▄█   os      : arch linux x86_64', color: C.text },
+          { text: '  █  ▀▀  ▀▀█   shell   : zsh 5.9', color: C.text },
+          { text: '  █▄▄▄▄▄▄▄▄█   editor  : neovim', color: C.text },
+          { text: '   ▀█▄▄▄▄█▀    stack   : react · tailwind · node · python · postgres', color: C.text },
+          { text: '     ▀▀▀▀      uptime  : 6 yrs shipping', color: C.text },
+          { text: '               location: singapore', color: C.text }
+        ]);
+        break;
+      case 'stack':
+        out([
+          { text: '  languages  javascript · python · html · css', color: C.text },
+          { text: '  frontend   react · tailwind css', color: C.text },
+          { text: '  backend    node.js · express · aiogram · telethon · rest api', color: C.text },
+          { text: '  database   sqlite · mongodb · postgresql', color: C.text },
+          { text: '  tools      git · github · vercel · netlify · vs code · claude code · chatgpt', color: C.text }
+        ]);
+        break;
+      case 'projects':
+        out(this.projects.map((p) => ({ text: '  ' + p.no + '  ' + this.pad(p.name, 12) + p.stack, color: C.text }))
+          .concat([{ text: '  scroll to /projects for the full list.', color: C.dim }]));
+        break;
+      case 'social':
+        out([
+          { text: '  telegram   t.me/shikiray', color: C.text },
+          { text: '  github     github.com/spelsinx', color: C.text },
+          { text: '  youtube    youtube.com/@shikirayyy', color: C.text }
+        ]);
+        break;
+      case 'github': {
+        this.print(echo.concat([{ text: 'fetching github activity for spelsinx…', color: C.dim }]));
+        try {
+          const r = await fetch('https://api.github.com/users/spelsinx/events/public?per_page=6');
+          const j = await r.json();
+          const rows = (Array.isArray(j) ? j : []).slice(0, 6).map((e) => ({
+            text: '  ' + this.pad((e.type || '').replace('Event', '').toLowerCase(), 12) + (e.repo ? e.repo.name : ''),
+            color: C.text
+          }));
+          this.print(rows.length ? rows.concat([{ text: '', color: C.dim }]) : [{ text: '  no public activity returned.', color: C.dim }, { text: '', color: C.dim }]);
+        } catch (err) {
+          this.print([{ text: '  network blocked — see github.com/spelsinx', color: C.dim }, { text: '', color: C.dim }]);
+        }
+        break;
+      }
+      case 'theme': {
+        const key = (arg || '').toLowerCase();
+        if (THEMES[key]) {
+          document.documentElement.style.setProperty('--accent', THEMES[key]);
+          out([{ text: '  accent → ' + key + ' (' + THEMES[key] + ')', color: 'var(--accent)' }]);
+        } else {
+          out([{ text: '  usage: theme <' + Object.keys(THEMES).join('|') + '>', color: C.dim }]);
+        }
+        break;
+      }
+      case 'matrix':
+        if (this.raf) { this.stopMatrix(); out([{ text: '  matrix rain off.', color: C.dim }]); }
+        else { this.startMatrix(); out([{ text: '  matrix rain on. run `matrix` again to stop.', color: 'var(--accent)' }]); }
+        break;
+      case 'sl':
+        out([
+          { text: '      ====        ________                ___________', color: 'var(--accent)' },
+          { text: '  _D _|  |_______/        \\__I_I_____===__|_________|', color: 'var(--accent)' },
+          { text: '   |(_)---  |   H\\________/ |   |        =|___ ___|', color: C.text },
+          { text: '   /     |  |   H  |  |     |   |         ||_| |_||', color: C.text },
+          { text: '  |      |  |   H  |__--------------------| [___] |', color: C.text },
+          { text: '  | ________|___H__/__|_____/[][]~\\_______|       |', color: C.text },
+          { text: '  |/ |   |-----------I_____I [][] []  D   |=======|', color: C.text },
+          { text: '  you meant `ls`. too late.', color: C.dim }
+        ]);
+        break;
+      case 'echo':
+        out([{ text: arg || '', color: C.text }]);
+        break;
+      case 'date':
+        out([{ text: new Date().toString(), color: C.text }]);
+        break;
+      case 'neko':
+        out([
+          { text: '   /\\_/\\', color: 'var(--accent)' },
+          { text: '  ( o.o )   nya. the cat has been summoned.', color: C.text },
+          { text: '   > ^ <    it will not help you debug.', color: C.dim }
+        ]);
+        break;
+      case 'clear':
+        this.setState({ lines: [] });
+        break;
+      default:
+        out([{ text: 'command not found: ' + cmd + ' — try `help`.', color: 'var(--accent)' }]);
+    }
+  }
+
+  renderVals() {
+    return {
+      lines: this.state.lines,
+      projects: this.projects,
+      stackGroups: this.stackGroups,
+      inputRef: (el) => { this.input = el; },
+      endRef: (el) => { this.end = el; },
+      focusInput: () => { if (this.input) this.input.focus(); },
+      onKeyDown: (e) => {
+        if (e.key !== 'Enter') return;
+        const v = e.currentTarget.value;
+        e.currentTarget.value = '';
+        this.run(v);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
